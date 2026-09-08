@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react'
-import { fetchHealth } from './lib/health'
+import { useAuth } from './auth/AuthProvider'
+import { AuthScreen } from './auth/AuthScreen'
+import { ResetScreen } from './auth/ResetScreen'
+import { currentRoute } from './lib/router'
 
 export default function App() {
-  const [status, setStatus] = useState('checking…')
+  const { user, loading } = useAuth()
 
-  useEffect(() => {
-    fetchHealth()
-      .then(h => setStatus(`API ${h.version}`))
-      .catch(e => setStatus(`API unreachable: ${e.message}`))
-  }, [])
+  if (currentRoute() === 'reset-password') return <ResetScreen />
+  /* Before /api/me answers, showing the sign-in form would flash it at
+     someone who is already signed in. */
+  if (loading) return <div className="auth"><p className="auth-sub">…</p></div>
+  if (!user) return <AuthScreen />
 
-  return (
-    <main style={{ fontFamily: 'system-ui', padding: 24 }}>
-      <h1>Insta Preview</h1>
-      <p>{status}</p>
-    </main>
-  )
+  return <div className="screen"><p style={{ padding: 16 }}>Signed in as {user.email}</p></div>
 }

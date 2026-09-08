@@ -141,3 +141,54 @@ body {
   color: var(--text);
   border-bottom-color: var(--text);
 }
+
+/* ── Signing in ─────────────────────────────────────────────────────────── */
+
+.auth { max-width: 340px; margin: 0 auto; padding: 64px 24px; text-align: center; }
+.auth-title { font-size: 28px; font-weight: 600; margin: 0 0 4px; }
+.auth-sub { color: var(--text-secondary); margin: 0 0 32px; }
+.auth-form { display: flex; flex-direction: column; gap: 8px; }
+
+.field {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--separator);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  /* 16px, or iOS zooms the page when the field takes focus. */
+  font-size: 16px;
+}
+
+.primary {
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.primary:disabled { opacity: 0.5; }
+
+.auth-error { color: var(--danger); font-size: 14px; margin: 4px 0; }
+.auth-notice { color: var(--text-secondary); font-size: 14px; margin: 4px 0; }
+.auth-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+
+.link {
+  background: none; border: 0; padding: 0;
+  color: var(--accent); font-family: inherit; font-size: 14px;
+  cursor: pointer;
+}
+
+.google-button { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.google-divider {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; color: var(--text-secondary); font-size: 13px;
+}
+.google-divider::before,
+.google-divider::after { content: ''; flex: 1; height: 1px; background: var(--separator); }
