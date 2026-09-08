@@ -176,7 +176,11 @@ body {
 
 .auth-error { color: var(--danger); font-size: 14px; margin: 4px 0; }
 .auth-notice { color: var(--text-secondary); font-size: 14px; margin: 4px 0; }
-.auth-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+
+.auth-foot {
+  margin-top: 32px; color: var(--text-secondary);
+  font-size: 12px; line-height: 1.5;
+}
 
 .link {
   background: none; border: 0; padding: 0;
@@ -184,14 +188,7 @@ body {
   cursor: pointer;
 }
 
-.google-button { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-
-.google-divider {
-  display: flex; align-items: center; gap: 12px;
-  width: 100%; color: var(--text-secondary); font-size: 13px;
-}
-.google-divider::before,
-.google-divider::after { content: ''; flex: 1; height: 1px; background: var(--separator); }
+.google-button { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 
 /* ── Sheets and the account switcher ────────────────────────────────────── */
 

@@ -36,12 +36,6 @@ jobs:
           VITE_API_URL: https://insta-api.gleearl.com
           VITE_GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
 
-      # GitHub Pages serves 404.html for any path it does not have a file for.
-      # This app is a single page with client-side routes — /reset-password
-      # arrives as a link in an email — so without this every deep link is a
-      # 404 instead of the app.
-      - run: cp dist/index.html dist/404.html
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

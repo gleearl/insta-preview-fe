@@ -68,7 +68,6 @@ export function GoogleButton({ onError }: { onError: (message: string) => void }
 
   return (
     <div className="google-button">
-      <div className="google-divider"><span>or</span></div>
       <div ref={holder} />
     </div>
   )
