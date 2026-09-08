@@ -4,7 +4,7 @@ Plan an Instagram grid before you post it. Drag drafts into position and see how
 they sit alongside what you have already published — in a faithful reproduction
 of the Instagram profile screen.
 
-- **Live:** https://insta.gleearl.com
+- **Live:** https://gleearl.github.io/insta-preview-fe/ (custom domain `insta.gleearl.com` not pointed yet)
 - **API:** [insta-preview-laravel](https://github.com/gleearl/insta-preview-laravel) · https://insta-api.gleearl.com
 
 ## Features
@@ -15,6 +15,16 @@ of the Instagram profile screen.
 - **Drag to reorder** — drafts *and* published photos
 - **Captions and scheduled dates** — plan what goes out and when
 - **Preview mode** — strips every editing affordance for a pixel-honest profile
+
+## Not wired up yet
+
+- **Custom domain.** Add `public/CNAME` with `insta.gleearl.com`, point the DNS
+  at GitHub Pages, and set `VITE_BASE=/` in the workflow **on the same commit** —
+  the base path and the CNAME must change together or every asset 404s.
+- **Google sign-in.** Set the repository variable `GOOGLE_CLIENT_ID` to a Google
+  Cloud Web OAuth client id, with `https://gleearl.github.io` and
+  `https://insta.gleearl.com` as authorised origins. Until then the button does
+  not render at all — a Google button that fails on click is worse than none.
 
 ## Local development
 

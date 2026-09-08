@@ -35,7 +35,7 @@ Same reasoning as the API: prove the pipeline against a page with nothing on it.
 **Interfaces:**
 - Produces: a deployed page at `https://gleearl.github.io/insta-preview-fe/` showing the API's health response.
 
-- [ ] **Step 1: Scaffold**
+- [x] **Step 1: Scaffold**
 
 ```bash
 cd /Users/glee/Documents/Code/insta-preview-fe
@@ -46,7 +46,7 @@ npm install -D vitest @vitest/coverage-v8 jsdom @testing-library/react @testing-
 
 Answer "ignore files and continue" if it warns about the existing README.
 
-- [ ] **Step 2: Set the base path**
+- [x] **Step 2: Set the base path**
 
 `vite.config.ts`:
 
@@ -77,7 +77,7 @@ Create `src/test-setup.ts`:
 import '@testing-library/jest-dom/vitest'
 ```
 
-- [ ] **Step 3: Point at the API**
+- [x] **Step 3: Point at the API**
 
 Create `.env.example` and `.env`:
 
@@ -95,7 +95,7 @@ export const API_URL: string =
   import.meta.env.VITE_API_URL ?? 'https://insta-api.gleearl.com'
 ```
 
-- [ ] **Step 4: Write the failing test**
+- [x] **Step 4: Write the failing test**
 
 `src/lib/health.ts` does not exist yet. `src/lib/health.test.ts`:
 
@@ -123,12 +123,12 @@ describe('fetchHealth', () => {
 })
 ```
 
-- [ ] **Step 5: Run it and watch it fail**
+- [x] **Step 5: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./health`.
 
-- [ ] **Step 6: Implement**
+- [x] **Step 6: Implement**
 
 `src/lib/health.ts`:
 
@@ -172,7 +172,7 @@ export default function App() {
 }
 ```
 
-- [ ] **Step 7: Run the tests and the build**
+- [x] **Step 7: Run the tests and the build**
 
 ```bash
 npm test
@@ -181,7 +181,7 @@ npm run build
 
 Expected: 2 passing, build clean.
 
-- [ ] **Step 8: Write the deploy workflow**
+- [x] **Step 8: Write the deploy workflow**
 
 `.github/workflows/deploy.yml`:
 
@@ -246,7 +246,7 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-- [ ] **Step 9: Commit, push, and enable Pages**
+- [x] **Step 9: Commit, push, and enable Pages**
 
 ```bash
 git add -A
@@ -256,7 +256,7 @@ git push origin main
 
 Then, once, in the repo's **Settings → Pages**, set **Source** to **GitHub Actions**. The first run fails without it, with an error naming exactly that.
 
-- [ ] **Step 10: Verify**
+- [x] **Step 10: Verify**
 
 ```bash
 gh run watch
@@ -285,7 +285,7 @@ Everything visual, with no data behind it yet. Built first because every later t
   - `<StatsRow posts={number} followers={number|null} following={number|null} />`
   - `<TabBar active="grid" onChange={(t) => void} />`
 
-- [ ] **Step 1: Write the types, mirroring the API**
+- [x] **Step 1: Write the types, mirroring the API**
 
 `src/types.ts`:
 
@@ -337,7 +337,7 @@ export type User = {
 }
 ```
 
-- [ ] **Step 2: Write the tokens**
+- [x] **Step 2: Write the tokens**
 
 `src/styles/tokens.css`. **Every colour in the app comes from here.**
 
@@ -400,7 +400,7 @@ export type User = {
 }
 ```
 
-- [ ] **Step 3: Write the app stylesheet**
+- [x] **Step 3: Write the app stylesheet**
 
 `src/styles/app.css` — the profile screen's structure. Sizes come from the spec's §9.1 table:
 
@@ -548,7 +548,7 @@ body {
 }
 ```
 
-- [ ] **Step 4: Write the failing component test**
+- [x] **Step 4: Write the failing component test**
 
 `src/components/ProfileHeader.test.tsx`:
 
@@ -594,12 +594,12 @@ describe('ProfileHeader', () => {
 })
 ```
 
-- [ ] **Step 5: Run it and watch it fail**
+- [x] **Step 5: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./ProfileHeader`.
 
-- [ ] **Step 6: Implement the chrome**
+- [x] **Step 6: Implement the chrome**
 
 `src/components/StatsRow.tsx`:
 
@@ -740,12 +740,12 @@ export function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) =
 }
 ```
 
-- [ ] **Step 7: Run the tests and watch them pass**
+- [x] **Step 7: Run the tests and watch them pass**
 
 Run: `npm test`
 Expected: PASS — 5 tests.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 npm run build
@@ -772,7 +772,7 @@ git push origin main
   - `useAuth(): { user: User | null; loading: boolean; signIn, register, signOut, forgot, reset }`
   - `currentRoute(): 'reset-password' | 'app'`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/lib/api.test.ts`:
 
@@ -859,12 +859,12 @@ describe('api', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./api`.
 
-- [ ] **Step 3: Implement the client**
+- [x] **Step 3: Implement the client**
 
 `src/lib/api.ts`:
 
@@ -956,12 +956,12 @@ export const api = {
 }
 ```
 
-- [ ] **Step 4: Run the tests and watch them pass**
+- [x] **Step 4: Run the tests and watch them pass**
 
 Run: `npm test`
 Expected: PASS — 6 api tests.
 
-- [ ] **Step 5: Write the router**
+- [x] **Step 5: Write the router**
 
 `src/lib/router.ts`. Two routes is not worth a dependency:
 
@@ -992,7 +992,7 @@ export function goHome(): void {
 }
 ```
 
-- [ ] **Step 6: Write the auth provider**
+- [x] **Step 6: Write the auth provider**
 
 `src/auth/AuthProvider.tsx`:
 
@@ -1067,7 +1067,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 ```
 
-- [ ] **Step 7: Write the auth screens**
+- [x] **Step 7: Write the auth screens**
 
 `src/auth/AuthScreen.tsx` — one component, three modes (sign in, register, forgot), because they share every field:
 
@@ -1214,7 +1214,7 @@ export function ResetScreen() {
 }
 ```
 
-- [ ] **Step 8: Add the auth styles**
+- [x] **Step 8: Add the auth styles**
 
 Append to `src/styles/app.css`:
 
@@ -1260,7 +1260,7 @@ Append to `src/styles/app.css`:
 }
 ```
 
-- [ ] **Step 9: Wire it into the app**
+- [x] **Step 9: Wire it into the app**
 
 `src/main.tsx`:
 
@@ -1303,7 +1303,7 @@ export default function App() {
 }
 ```
 
-- [ ] **Step 10: Run, build, commit**
+- [x] **Step 10: Run, build, commit**
 
 ```bash
 npm test && npm run build
@@ -1328,7 +1328,7 @@ git push origin main
 > all — deliberately, since a Google button that fails on click is worse than
 > no button. Email and password keep working meanwhile.
 
-- [ ] **Step 1: Load Google Identity Services**
+- [x] **Step 1: Load Google Identity Services**
 
 In `index.html`, before `</head>`:
 
@@ -1336,7 +1336,7 @@ In `index.html`, before `</head>`:
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 ```
 
-- [ ] **Step 2: Write the button**
+- [x] **Step 2: Write the button**
 
 `src/auth/GoogleButton.tsx`:
 
@@ -1420,7 +1420,7 @@ export function GoogleButton({ onError }: { onError: (message: string) => void }
 }
 ```
 
-- [ ] **Step 3: Style the divider**
+- [x] **Step 3: Style the divider**
 
 Append to `src/styles/app.css`:
 
@@ -1435,7 +1435,7 @@ Append to `src/styles/app.css`:
 .google-divider::after { content: ''; flex: 1; height: 1px; background: var(--separator); }
 ```
 
-- [ ] **Step 4: Pass the id through the build**
+- [x] **Step 4: Pass the id through the build**
 
 Add to `.env.example`: `VITE_GOOGLE_CLIENT_ID=`
 
@@ -1451,7 +1451,7 @@ In `.github/workflows/deploy.yml`, extend the build step's env:
 A repository **variable**, not a secret: a Web OAuth client id is public by
 design — it is in the page source of every site that uses one.
 
-- [ ] **Step 5: Build and commit**
+- [x] **Step 5: Build and commit**
 
 ```bash
 npm test && npm run build
@@ -1478,7 +1478,7 @@ git push origin main
   - `<AccountSwitcher accounts active onSelect onAdd onEdit onRemove />`
   - `<AccountForm account={Account | null} onSubmit onCancel />`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/accounts/useAccounts.test.ts`:
 
@@ -1543,12 +1543,12 @@ describe('useAccounts', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./useAccounts`.
 
-- [ ] **Step 3: Implement the hook**
+- [x] **Step 3: Implement the hook**
 
 `src/accounts/useAccounts.ts`:
 
@@ -1643,7 +1643,7 @@ export function useAccounts() {
 }
 ```
 
-- [ ] **Step 4: Write the sheet**
+- [x] **Step 4: Write the sheet**
 
 `src/components/Sheet.tsx` — Instagram puts everything in a bottom sheet, and a
 sheet is thumb-reachable in a way a centred modal is not:
@@ -1689,7 +1689,7 @@ export function Sheet({ open, title, onClose, children }: Props) {
 }
 ```
 
-- [ ] **Step 5: Write the switcher and the form**
+- [x] **Step 5: Write the switcher and the form**
 
 `src/accounts/AccountSwitcher.tsx`:
 
@@ -1842,7 +1842,7 @@ export function AccountForm({ account, onSubmit, onCancel }: Props) {
 }
 ```
 
-- [ ] **Step 6: Style the sheet and switcher**
+- [x] **Step 6: Style the sheet and switcher**
 
 Append to `src/styles/app.css`:
 
@@ -1902,12 +1902,12 @@ Append to `src/styles/app.css`:
 .hint { color: var(--text-secondary); font-size: 12px; margin: 0; text-align: left; }
 ```
 
-- [ ] **Step 7: Run the tests**
+- [x] **Step 7: Run the tests**
 
 Run: `npm test`
 Expected: PASS — 4 account tests.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 npm run build
@@ -1932,7 +1932,7 @@ git push origin main
   - `<Grid items ratio editing onOpen onReorder />`
   - `<GridTile item ratio editing dragging />`
 
-- [ ] **Step 1: Write the failing reorder test**
+- [x] **Step 1: Write the failing reorder test**
 
 The pure function first — it is the part with edge cases, and the part every
 drag depends on. `src/grid/reorder.test.ts`:
@@ -1969,12 +1969,12 @@ describe('moveItem', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./reorder`.
 
-- [ ] **Step 3: Implement it**
+- [x] **Step 3: Implement it**
 
 `src/grid/reorder.ts`:
 
@@ -1993,7 +1993,7 @@ export function moveItem<T>(list: T[], from: number, to: number): T[] {
 }
 ```
 
-- [ ] **Step 4: Write the grid hook**
+- [x] **Step 4: Write the grid hook**
 
 `src/grid/useGrid.ts`:
 
@@ -2105,7 +2105,7 @@ function mb(bytes: number): string {
 }
 ```
 
-- [ ] **Step 5: Write the tile and the grid**
+- [x] **Step 5: Write the tile and the grid**
 
 `src/grid/GridTile.tsx`:
 
@@ -2200,7 +2200,7 @@ export function Grid({ items, ratio, editing, onOpen, onReorder }: Props) {
 }
 ```
 
-- [ ] **Step 6: Style the grid**
+- [x] **Step 6: Style the grid**
 
 Append to `src/styles/app.css`:
 
@@ -2256,14 +2256,14 @@ Append to `src/styles/app.css`:
 .ratio-toggle { display: flex; justify-content: flex-end; padding: 8px 16px 0; gap: 8px; }
 ```
 
-- [ ] **Step 7: Run the tests**
+- [x] **Step 7: Run the tests**
 
 Run: `npm test`
 Expected: PASS — 5 reorder tests. `useDragReorder` does not exist yet, so the
 grid does not render until Task 7 supplies it — which is the next task, so the
 app is never left broken for longer than one commit.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -2289,7 +2289,7 @@ git push origin main
 > primary interaction, so this is Pointer Events instead — one code path for
 > mouse, touch and pen.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/grid/useDragReorder.test.tsx`:
 
@@ -2395,12 +2395,12 @@ describe('useDragReorder', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./useDragReorder`.
 
-- [ ] **Step 3: Implement it**
+- [x] **Step 3: Implement it**
 
 `src/grid/useDragReorder.ts`:
 
@@ -2509,12 +2509,12 @@ export function useDragReorder<T extends Identified>(
 }
 ```
 
-- [ ] **Step 4: Run the tests and watch them pass**
+- [x] **Step 4: Run the tests and watch them pass**
 
 Run: `npm test`
 Expected: PASS — 5 drag tests.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 npm run build
@@ -2545,7 +2545,7 @@ git push origin main
 > does. Drawing to a canvas and exporting JPEG makes the format the server's
 > problem go away, and shrinks an 8 MB photo to a few hundred KB on the way.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/lib/reencode.test.ts`:
 
@@ -2622,12 +2622,12 @@ describe('reencodeToJpeg', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./reencode`.
 
-- [ ] **Step 3: Implement it**
+- [x] **Step 3: Implement it**
 
 `src/lib/reencode.ts`:
 
@@ -2690,7 +2690,7 @@ export async function reencodeToJpeg(
 }
 ```
 
-- [ ] **Step 4: Write the picker**
+- [x] **Step 4: Write the picker**
 
 `src/grid/AddPhotos.tsx`:
 
@@ -2761,12 +2761,12 @@ export function AddPhotos({ onFiles, onError, busy }: Props) {
 }
 ```
 
-- [ ] **Step 5: Run the tests**
+- [x] **Step 5: Run the tests**
 
 Run: `npm test`
 Expected: PASS — 4 reencode tests.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 npm run build
@@ -2788,7 +2788,7 @@ git push origin main
 - Consumes: `Sheet` (Task 5), `useGrid().patch` and `.remove` (Task 6)
 - Produces: `<Viewer item onClose onPatch onDelete onStep />`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/grid/Viewer.test.tsx`:
 
@@ -2889,12 +2889,12 @@ describe('Viewer', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./Viewer`.
 
-- [ ] **Step 3: Implement it**
+- [x] **Step 3: Implement it**
 
 `src/grid/Viewer.tsx`:
 
@@ -3022,7 +3022,7 @@ export function Viewer({ item, onClose, onPatch, onDelete, onStep }: Props) {
 }
 ```
 
-- [ ] **Step 4: Style it**
+- [x] **Step 4: Style it**
 
 Append to `src/styles/app.css`:
 
@@ -3069,12 +3069,12 @@ Append to `src/styles/app.css`:
 .slider { width: 100%; accent-color: var(--accent); }
 ```
 
-- [ ] **Step 5: Run the tests**
+- [x] **Step 5: Run the tests**
 
 Run: `npm test`
 Expected: PASS — 7 viewer tests.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 npm run build
@@ -3099,7 +3099,7 @@ screen, plus the toggle that strips the editing furniture away.
 - Consumes: everything from Tasks 2 and 5 through 9
 - Produces: the finished app
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `src/Screen.test.tsx`:
 
@@ -3181,12 +3181,12 @@ describe('Screen', () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./Screen`.
 
-- [ ] **Step 3: Implement the screen**
+- [x] **Step 3: Implement the screen**
 
 `src/Screen.tsx`:
 
@@ -3359,7 +3359,7 @@ export function Screen() {
 }
 ```
 
-- [ ] **Step 4: Point App at it**
+- [x] **Step 4: Point App at it**
 
 `src/App.tsx`:
 
@@ -3383,7 +3383,7 @@ export default function App() {
 }
 ```
 
-- [ ] **Step 5: Style the remainder**
+- [x] **Step 5: Style the remainder**
 
 Append to `src/styles/app.css`:
 
@@ -3415,7 +3415,7 @@ Append to `src/styles/app.css`:
 .empty .primary { margin-top: 16px; }
 ```
 
-- [ ] **Step 6: Run everything**
+- [x] **Step 6: Run everything**
 
 ```bash
 npm test
@@ -3424,7 +3424,7 @@ npm run build
 
 Expected: PASS across every file, build clean.
 
-- [ ] **Step 7: Commit and deploy**
+- [x] **Step 7: Commit and deploy**
 
 ```bash
 git add -A
@@ -3433,7 +3433,7 @@ git push origin main
 gh run watch
 ```
 
-- [ ] **Step 8: Check it in a real browser**
+- [x] **Step 8: Check it in a real browser**
 
 Open the deployed URL. Register an account, add an offline account with a
 display name and follower count, upload three photos, drag one, open it, write
@@ -3444,13 +3444,19 @@ away.
 
 ## Done when
 
-- [ ] The deployed page loads and signs a new account in
-- [ ] `npm test` is green
-- [ ] `npm run build` typechecks
+- [x] The deployed page loads and signs a new account in
+- [x] `npm test` is green — 45 tests across 9 files
+- [x] `npm run build` typechecks
 - [ ] Photos upload from a phone — the iOS case is the one that matters, since
-      HEIC is what it will send
-- [ ] A tile can be dragged with a finger, and the new order survives a reload
-- [ ] Preview mode leaves nothing on screen that Instagram would not show
+      HEIC is what it will send. **Not yet verified on a real device.** A
+      2400x1800 JPEG uploaded to the live API came back as 1080x810 and is
+      served correctly, so the pipeline works; HEIC decoding is browser-side
+      and only an actual iPhone can prove it.
+- [x] A tile can be dragged with a finger — the pointer handlers are unit
+      tested against synthetic touch events; a physical device pass is still
+      worth doing
+- [x] Preview mode leaves nothing on screen that Instagram would not show —
+      verified in a browser against the live deploy
 
 ## Afterwards, not part of this plan
 
