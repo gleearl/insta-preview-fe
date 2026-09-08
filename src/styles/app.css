@@ -192,3 +192,184 @@ body {
 }
 .google-divider::before,
 .google-divider::after { content: ''; flex: 1; height: 1px; background: var(--separator); }
+
+/* ── Sheets and the account switcher ────────────────────────────────────── */
+
+.sheet-backdrop {
+  position: fixed; inset: 0; z-index: 20;
+  background: rgb(0 0 0 / 0.5);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+
+.sheet {
+  width: 100%; max-width: var(--column);
+  background: var(--bg);
+  border-radius: 12px 12px 0 0;
+  padding: 8px 16px 24px;
+  /* Room for the home indicator, and never taller than the screen. */
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  max-height: 85vh; overflow-y: auto;
+}
+
+.sheet-grip {
+  width: 36px; height: 4px; border-radius: 2px;
+  background: var(--separator); margin: 4px auto 12px;
+}
+
+.sheet-title { font-size: 16px; font-weight: 600; text-align: center; margin: 0 0 16px; }
+
+.switcher { display: flex; flex-direction: column; gap: 4px; }
+.switcher-row { display: flex; align-items: center; gap: 4px; }
+
+.switcher-pick {
+  flex: 1; display: flex; align-items: center; gap: 12px;
+  background: none; border: 0; padding: 8px 0;
+  color: var(--text); font-family: inherit; font-size: 15px;
+  cursor: pointer; text-align: left;
+}
+
+.switcher-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--button-fill); object-fit: cover; flex-shrink: 0;
+}
+
+.switcher-name { flex: 1; font-weight: 600; }
+.switcher-tag { color: var(--text-secondary); font-size: 12px; }
+
+.segmented { display: flex; background: var(--button-fill); border-radius: var(--radius); padding: 2px; }
+
+.segment {
+  flex: 1; height: 32px; border: 0; border-radius: 6px;
+  background: transparent; color: var(--text-secondary);
+  font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.segment[aria-pressed='true'] { background: var(--bg); color: var(--text); }
+
+.field-area { height: auto; padding: 10px 12px; resize: vertical; font-family: inherit; }
+.counts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.hint { color: var(--text-secondary); font-size: 12px; margin: 0; text-align: left; }
+
+/* ── The grid ───────────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+  /* The finger scrolls the page; the drag handler claims the gesture itself
+     once it decides one has started. Without this, a drag on iOS scrolls
+     instead. */
+  touch-action: pan-y;
+}
+
+.grid-cell { position: relative; }
+
+/* Instagram's profile grid is 4:5 portrait. Previewing on squares
+   misrepresents what gets cropped, which is most of the point. */
+.grid[data-ratio='4:5'] .tile { aspect-ratio: 4 / 5; }
+.grid[data-ratio='1:1'] .tile { aspect-ratio: 1 / 1; }
+
+.tile {
+  display: block; width: 100%; padding: 0;
+  border: 0; background: var(--button-fill);
+  position: relative; overflow: hidden; cursor: pointer;
+}
+
+.tile-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.tile-draft::after {
+  content: ''; position: absolute; inset: 0;
+  border: 2px dashed var(--draft-outline);
+  pointer-events: none;
+}
+
+.tile-dragging { opacity: 0.4; }
+
+.tile-badge, .tile-date {
+  position: absolute; left: 4px;
+  padding: 2px 5px; border-radius: 4px;
+  background: rgb(0 0 0 / 0.6); color: #fff;
+  font-size: 10px; font-weight: 600; line-height: 1.4;
+}
+.tile-badge { top: 4px; }
+.tile-date { bottom: 4px; }
+
+/* Drawn under the ninth tile, across the whole row. */
+.fold {
+  position: absolute; left: 0; right: 0; bottom: calc(var(--grid-gap) * -1);
+  height: 1px; background: var(--accent);
+}
+
+/* ── The viewer ─────────────────────────────────────────────────────────── */
+
+.viewer {
+  position: fixed; inset: 0; z-index: 30;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+
+.viewer-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 4px 8px; border-bottom: 1px solid var(--separator);
+  padding-top: calc(4px + env(safe-area-inset-top));
+}
+
+.viewer-kind { font-size: 14px; font-weight: 600; }
+
+.viewer-stage {
+  display: flex; align-items: center; justify-content: center;
+  background: #000; position: relative;
+}
+
+.viewer-image { max-width: 100%; max-height: 60vh; object-fit: contain; display: block; }
+
+.viewer-step {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgb(0 0 0 / 0.4); color: #fff;
+  border: 0; border-radius: 50%;
+  width: 44px; height: 44px; font-size: 24px; cursor: pointer;
+}
+.viewer-step:first-of-type { left: 8px; }
+.viewer-step:last-of-type { right: 8px; }
+
+.viewer-fields {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 16px; max-width: var(--column); width: 100%; margin: 0 auto;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+
+.viewer-label { font-size: 13px; font-weight: 600; }
+.viewer-count { font-size: 12px; color: var(--text-secondary); text-align: right; }
+.slider { width: 100%; accent-color: var(--accent); }
+
+/* ── The assembled screen ───────────────────────────────────────────────── */
+
+.toolbar { display: flex; align-items: center; gap: 8px; padding: 0 16px 8px; }
+.toolbar .pill { flex: 0 0 auto; padding: 0 16px; }
+
+.ratio-toggle {
+  margin-left: auto; display: flex;
+  background: var(--button-fill); border-radius: var(--radius); padding: 2px;
+}
+.ratio-toggle .segment { padding: 0 12px; height: 28px; flex: 0 0 auto; }
+
+.preview-toggle {
+  position: fixed; z-index: 10;
+  right: 16px; bottom: calc(16px + env(safe-area-inset-bottom));
+  height: 40px; padding: 0 16px;
+  border: 0; border-radius: 20px;
+  background: var(--text); color: var(--bg);
+  font-family: inherit; font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.25);
+}
+
+.banner {
+  margin: 0 16px 8px; padding: 10px 12px;
+  border-radius: var(--radius);
+  background: var(--danger); color: #fff; font-size: 13px;
+}
+
+.empty { padding: 48px 24px; text-align: center; color: var(--text-secondary); }
+.empty h2 { color: var(--text); font-size: 20px; margin: 0 0 8px; }
+.empty .primary { margin-top: 16px; }

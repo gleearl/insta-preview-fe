@@ -2,6 +2,7 @@ import { useAuth } from './auth/AuthProvider'
 import { AuthScreen } from './auth/AuthScreen'
 import { ResetScreen } from './auth/ResetScreen'
 import { currentRoute } from './lib/router'
+import { Screen } from './Screen'
 
 export default function App() {
   const { user, loading } = useAuth()
@@ -12,5 +13,5 @@ export default function App() {
   if (loading) return <div className="auth"><p className="auth-sub">…</p></div>
   if (!user) return <AuthScreen />
 
-  return <div className="screen"><p style={{ padding: 16 }}>Signed in as {user.email}</p></div>
+  return <Screen />
 }
