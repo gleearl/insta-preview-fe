@@ -47,10 +47,13 @@ describe('Screen', () => {
   it('preview mode hides the draft badges and the add button', async () => {
     stubApi()
     renderScreen()
-    await screen.findByText('gleearl')
 
+    /* The profile and the grid arrive in two separate requests. Waiting for
+       the badge rather than the username is what makes this deterministic —
+       waiting for the username and then reading the grid synchronously fails
+       roughly one run in six. */
+    expect(await screen.findByText('Draft')).toBeInTheDocument()
     expect(screen.getByLabelText('Add photos')).toBeInTheDocument()
-    expect(screen.getByText('Draft')).toBeInTheDocument()
 
     await userEvent.click(screen.getByRole('button', { name: /preview/i }))
 
@@ -61,7 +64,7 @@ describe('Screen', () => {
   it('switches the grid between 4:5 and square', async () => {
     stubApi()
     const { container } = renderScreen()
-    await screen.findByText('gleearl')
+    await screen.findByText('Draft')
 
     expect(container.querySelector('.grid')).toHaveAttribute('data-ratio', '4:5')
 
